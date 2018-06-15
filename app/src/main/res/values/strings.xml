@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Inventory</string>
+    <string name="action_delete_all_entries">Delete all entries</string>
+    <string name="action_insert_dummy_data">Insert fake data</string>
+</resources>
