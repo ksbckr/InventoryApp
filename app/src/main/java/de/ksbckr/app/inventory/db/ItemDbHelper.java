@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static de.ksbckr.app.inventory.db.ItemContract.*;
+import static de.ksbckr.app.inventory.db.ItemContract.ItemEntry;
 
 
 public class ItemDbHelper extends SQLiteOpenHelper {

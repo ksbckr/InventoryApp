@@ -1,18 +1,15 @@
 package de.ksbckr.app.inventory;
 
-import android.content.ClipData;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
-import de.ksbckr.app.inventory.db.ItemContract;
 import de.ksbckr.app.inventory.db.ItemContract.ItemEntry;
 import de.ksbckr.app.inventory.db.ItemDbHelper;
 
@@ -37,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayDatabaseInfo() {
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String[] projection = {
                 ItemEntry._ID,
@@ -47,14 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 ItemEntry.COLUMN_ITEM_SUPPLIER_NAME,
                 ItemEntry.COLUMN_ITEM_SUPPLIER_PHONENUMBER};
 
-        Cursor cursor = db.query(
-                TABLE_NAME,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null);
+        Cursor cursor = getContentResolver().query(ItemEntry.CONTENT_URI, projection, null, null, null);
 
         TextView displayView = (TextView) findViewById(R.id.info);
 
@@ -105,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         values.put(ItemEntry.COLUMN_ITEM_SUPPLIER_NAME, "Lego");
         values.put(ItemEntry.COLUMN_ITEM_SUPPLIER_PHONENUMBER, 112);
 
-        long newRowId = db.insert(TABLE_NAME, null, values);
+        Uri newUri = getContentResolver().insert(ItemEntry.CONTENT_URI, values);
     }
 
     @Override
@@ -129,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void deleteAllItems() {
+
+        //TODO delete using provider
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         db.delete(TABLE_NAME, null, null);
         db.close();
