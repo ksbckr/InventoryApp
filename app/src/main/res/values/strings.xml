@@ -1,5 +1,31 @@
 <resources>
     <string name="app_name">Inventory</string>
     <string name="action_delete_all_entries">Delete all entries</string>
-    <string name="action_insert_dummy_data">Insert fake data</string>
+    <string name="empty_view_title_text">The store is empty ...</string>
+    <string name="empty_view_subtitle_text">Go ahead and add an item</string>
+    <string name="unit_item_price">€</string>
+    <string name="category_supplier">Supplier information</string>
+    <string name="editor_activity_title_new_item">New item</string>
+    <string name="editor_activity_title_edit_item">Edit item</string>
+    <string name="hint_item_name">Item name</string>
+    <string name="hint_item_quantity">Quantity</string>
+    <string name="hint_item_price">Price</string>
+    <string name="hint_item_suppliername">Supplier name</string>
+    <string name="hint_item_supplierphone">Supplier phone</string>
+    <string name="editor_update_item_successful">Updating item successful</string>
+    <string name="editor_update_item_failed">Updating item failed</string>
+    <string name="editor_insert_item_successful">Inserting item successful</string>
+    <string name="editor_insert_item_failed">Inserting item failed</string>
+    <string name="action_delete">Delete item</string>
+    <string name="action_save">Save item</string>
+    <string name="unsaved_changes_dialog_msg">Discard unsaved changes?</string>
+    <string name="discard">Discard</string>
+    <string name="keep_editing">keep editing</string>
+    <string name="delete_dialog_msg">Delete item?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">@android:string/cancel</string>
+    <string name="editor_delete_item_failed">Deleting item failed</string>
+    <string name="editor_delete_item_successful">Deleting item successful</string>
+    <string name="quantity_text">Quantity:</string>
+    <string name="price_text">Price:</string>
 </resources>

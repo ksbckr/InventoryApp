@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="d16">16dp</dimen>
+    <dimen name="activity_margin">15dp</dimen>
+    <dimen name="fabMargin">16dp</dimen>
+    <dimen name="d5">5dp</dimen>
 </resources>

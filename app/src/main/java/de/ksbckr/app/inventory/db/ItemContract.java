@@ -14,7 +14,6 @@ public final class ItemContract {
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     public static final String PATH_ITEMS = "items";
 
-
     public static final class ItemEntry implements BaseColumns {
 
         public static final String CONTENT_LIST_TYPE =
@@ -29,12 +28,9 @@ public final class ItemContract {
 
         public final static String COLUMN_ITEM_NAME ="product_name";
 
-
         public final static String COLUMN_ITEM_PRICE = "price";
 
-
         public final static String COLUMN_ITEM_QUANTITY = "quantity";
-
 
         public final static String COLUMN_ITEM_SUPPLIER_NAME = "supplier_name";
 

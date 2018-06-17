@@ -58,6 +58,8 @@ public class ItemProvider extends ContentProvider {
 
         }
 
+        cursor.setNotificationUri(getContext().getContentResolver(), uri);
+
         return cursor;
     }
 
@@ -102,6 +104,8 @@ public class ItemProvider extends ContentProvider {
             Log.e(LOG_TAG, "Failed to insert row for " + uri);
             return null;
         }
+
+        getContext().getContentResolver().notifyChange(uri, null);
 
         return ContentUris.withAppendedId(uri, id);
     }
@@ -165,24 +169,39 @@ public class ItemProvider extends ContentProvider {
 
         SQLiteDatabase database = itemDbHelper.getWritableDatabase();
 
-        return database.update(ItemContract.ItemEntry.TABLE_NAME, values, selection, selectionArgs);
+        int updated = database.update(ItemContract.ItemEntry.TABLE_NAME, values, selection, selectionArgs);
+
+        if (updated != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        return updated;
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         SQLiteDatabase database = itemDbHelper.getWritableDatabase();
 
+        int deleted;
+
         final int match = sUriMatcher.match(uri);
+
         switch (match) {
             case ITEMS:
-                return database.delete(ItemContract.ItemEntry.TABLE_NAME, selection, selectionArgs);
+                deleted = database.delete(ItemContract.ItemEntry.TABLE_NAME, selection, selectionArgs);
+                break;
             case ITEM_ID:
                 selection = ItemContract.ItemEntry._ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
-                return database.delete(ItemContract.ItemEntry.TABLE_NAME, selection, selectionArgs);
+                deleted = database.delete(ItemContract.ItemEntry.TABLE_NAME, selection, selectionArgs);
+                break;
             default:
                 throw new IllegalArgumentException("Deletion is not supported for " + uri);
         }
+        if (deleted != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+        return deleted;
     }
 
     @Override
